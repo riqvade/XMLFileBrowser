@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using XMLFileBrowser.Infrastructure.Services;
 using XMLFileBrowser.StartScreen;
 
 namespace XMLFileBrowser
@@ -33,7 +34,6 @@ namespace XMLFileBrowser
             Services = ConfigureServices();
         }
 
-
         /// <summary>
         /// Настраивает сервисы для приложения.
         /// </summary>
@@ -41,6 +41,7 @@ namespace XMLFileBrowser
         {
             return new ServiceCollection()
                 .AddTransient<StartScreenViewModel>()
+                .AddSingleton<NavigationService>()
                 .BuildServiceProvider();
         }
     }

@@ -7,11 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using XMLFileBrowser.Components;
+using XMLFileBrowser.Infrastructure.Services;
 
 namespace XMLFileBrowser.StartScreen
 {
     class StartScreenViewModel : ViewModelBase
     {
+        /// <summary>
+        /// Сервис навигации
+        /// </summary>
+        private readonly NavigationService _navigationService;
+
         /// <summary>
         /// Команда для загрузки пути к XML файлу
         /// </summary>
@@ -34,8 +40,9 @@ namespace XMLFileBrowser.StartScreen
         /// <summary>
         /// Создает экземпляр класса <see cref="StartScreenViewModel"/>
         /// </summary>
-        public StartScreenViewModel()
+        public StartScreenViewModel(NavigationService navigationService)
         {
+            _navigationService = navigationService;
             AddImagesCommand = new RelayCommand(LoadImagesAndGoToImageEditor);
         }
 
@@ -48,8 +55,7 @@ namespace XMLFileBrowser.StartScreen
 
             if (!string.IsNullOrEmpty(filePath))
             {
-                //await _imageService.AddImagesAsync(storageFiles);
-                //_navigationService.GoToImageEditor();
+                _navigationService.GoToImageEditor();
             }
         }
     }

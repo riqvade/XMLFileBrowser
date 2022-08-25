@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:XMLFileBrowser"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Frame 
+        Name="MainFrame" 
+        Background="White" 
+        NavigationUIVisibility="Hidden">
+    </Frame>
 </Window>
