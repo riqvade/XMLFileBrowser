@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace XMLFileBrowser.StartScreen
+namespace XMLFileBrowser.XMLViewer
 {
     /// <summary>
-    /// Логика взаимодействия для Page2.xaml
+    /// Логика взаимодействия для XMLViewerPage.xaml
     /// </summary>
-    public partial class Page2 : Page
+    public partial class XMLViewerPage : Page
     {
-        public Page2()
+        public XMLViewerPage()
         {
             InitializeComponent();
         }

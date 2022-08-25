@@ -91,12 +91,6 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StartScreen\Page2.xaml.cs">
-      <DependentUpon>Page2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="StartScreen\SSP.xaml.cs">
-      <DependentUpon>SSP.xaml</DependentUpon>
-    </Compile>
     <Compile Include="StartScreen\StartScreenPage.xaml.cs">
       <DependentUpon>StartScreenPage.xaml</DependentUpon>
     </Compile>
@@ -105,6 +99,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="XMLViewer\XMLViewerPage.xaml.cs">
+      <DependentUpon>XMLViewerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XMLViewer\XMLViewerViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -113,15 +111,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StartScreen\Page2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="StartScreen\SSP.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="StartScreen\StartScreenPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XMLViewer\XMLViewerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

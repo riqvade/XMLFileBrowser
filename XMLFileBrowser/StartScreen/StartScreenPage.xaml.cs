@@ -1,32 +1,19 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using XMLFileBrowser.Infrastructure.Services;
 
 namespace XMLFileBrowser.StartScreen
 {
     /// <summary>
-    /// Логика взаимодействия для StartScreenPage.xaml
+    /// Логика взаимодействия для SSP.xaml
     /// </summary>
-    public partial class StartScreenPage : Window
+    public partial class StartScreenPage : Page
     {
-
         public StartScreenPage()
         {
             InitializeComponent();
             DataContext = App.Current.Services.GetService<StartScreenViewModel>();
-
         }
 
         /// <summary>
@@ -68,6 +55,12 @@ namespace XMLFileBrowser.StartScreen
         {
             string[] droppedFilenames =
                         e.Data.GetData(DataFormats.FileDrop, true) as string[];
+
+            if (!string.IsNullOrEmpty(droppedFilenames[0]))
+            {
+                NavigationService navigationService = App.Current.Services.GetService<NavigationService>();
+                navigationService.GoToImageEditor();
+            }
         }
     }
 }

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Navigation;
-using XMLFileBrowser.StartScreen;
+﻿using XMLFileBrowser.XMLViewer;
 
 namespace XMLFileBrowser.Infrastructure.Services
 {
@@ -21,7 +12,7 @@ namespace XMLFileBrowser.Infrastructure.Services
         public void GoToImageEditor()
         {
             MainWindow window = (MainWindow)App.Current.MainWindow;
-            window.MainFrame.Content = new Page2();
+            window.MainFrame.Content = new XMLViewerPage();
         }
 
         #endregion Public Methods

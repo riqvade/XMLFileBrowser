@@ -24,7 +24,7 @@ namespace XMLFileBrowser
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Content = new SSP();
+            MainFrame.Content = new StartScreenPage();
         }
     }
 }
