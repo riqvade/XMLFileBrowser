@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:XMLFileBrowser.StartScreen"
+        xmlns:local="clr-namespace:XMLFileBrowser.StartScreen"      
         mc:Ignorable="d"
         Title="StartScreenPage" Height="450" Width="800">
     <Grid>
@@ -39,9 +39,8 @@
             Grid.Row="1"
             Margin="10,30"
             HorizontalAlignment="Center"
-            
+            Command="{Binding AddImagesCommand}"
             Content="Add Images" />
-
 
     </Grid>
 </Window>

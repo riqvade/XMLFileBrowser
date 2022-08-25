@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace XMLFileBrowser.StartScreen
     /// </summary>
     public partial class StartScreenPage : Window
     {
+
         public StartScreenPage()
         {
             InitializeComponent();
+            DataContext = new StartScreenViewModel();
         }
 
         /// <summary>
@@ -59,11 +62,10 @@ namespace XMLFileBrowser.StartScreen
         /// <summary>
         /// Обрабатывает событие сбрасывания файлов в область загрузки
         /// </summary>
-        private async void DragDropArea_Drop(object sender, DragEventArgs e)
+        private void DragDropArea_Drop(object sender, DragEventArgs e)
         {
             string[] droppedFilenames =
                         e.Data.GetData(DataFormats.FileDrop, true) as string[];
         }
-
     }
 }
