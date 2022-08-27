@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace XMLFileBrowser.XMLViewer
 {
-    internal class XMLViewerViewModel
+    public class XMLViewerViewModel
     {
+
     }
 }

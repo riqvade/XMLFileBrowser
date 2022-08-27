@@ -3,5 +3,6 @@
     
     <SolidColorBrush x:Key="DradDropArea" Color="Aqua" />
     <SolidColorBrush x:Key="BorderOfFigure" Color="Black" />
+    <SolidColorBrush x:Key="BackgroundOfPage" Color="White" />
     <FontFamily x:Key="FontOfStartScreenText">SimSun</FontFamily>
 </ResourceDictionary>
