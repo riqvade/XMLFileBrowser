@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Xml;
 using XMLFileBrowser.Components;
+using XMLFileBrowser.StartScreen;
 using XMLFileBrowser.XMLViewer;
 
 namespace XMLFileBrowser
@@ -17,9 +18,9 @@ namespace XMLFileBrowser
         public MainWindow()
         {
             InitializeComponent();
-            //MainFrame.Content = new StartScreenPage();
+            MainFrame.Content = new StartScreenPage();
 
-            XMLParser.ParceXML();
+            //XMLParser.ParceXML();
         }
 
       

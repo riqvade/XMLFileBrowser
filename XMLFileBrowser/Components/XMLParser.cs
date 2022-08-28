@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace XMLFileBrowser.Components
                 foreach (XmlNode chaptersNode in chapters)
                 {
                     string chapterCaption = string.Empty;
-                    List<PositionModel> positionModels = new List<PositionModel>();
+                    ObservableCollection<PositionModel> positionModels = new ObservableCollection<PositionModel>();
 
                     chapterCaption = chaptersNode.SelectSingleNode("@Caption")?.Value;
                     Console.WriteLine(chaptersNode.SelectSingleNode("@Caption")?.Value);
@@ -52,7 +53,7 @@ namespace XMLFileBrowser.Components
                             string positionQuantityFx = string.Empty;
                             string positionQuantityResult = string.Empty;
 
-                            List<ResourceModel> resourceModels = new List<ResourceModel>();
+                            ObservableCollection<ResourceModel> resourceModels = new ObservableCollection<ResourceModel>();
 
                             positionCode = positionNode.Attributes.GetNamedItem("Code")?.Value;
                             Console.WriteLine("*** " + positionNode.Attributes.GetNamedItem("Code")?.Value);
@@ -94,6 +95,7 @@ namespace XMLFileBrowser.Components
                             Console.WriteLine();
                         }
                     }
+
                     ChapterModel chapterModel = new ChapterModel(chapterCaption, positionModels);
 
                     chapterModels.Add(chapterModel);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace XMLFileBrowser.XMLViewer
 {
     /// <summary>
-    /// Модель Главы
+    /// Модель Глав
     /// </summary>
     public class ChapterModel
     {
@@ -19,12 +20,12 @@ namespace XMLFileBrowser.XMLViewer
         /// <summary>
         /// Модель позиции
         /// </summary>
-        public List<PositionModel> PositionModels { get; }
+        public ObservableCollection<PositionModel> PositionModels { get; }
 
         /// <summary>
         /// Создает экземпляр класса <see cref="ChapterModel"/>
         /// </summary>
-        public ChapterModel(string caption, List<PositionModel> positionModels)
+        public ChapterModel(string caption, ObservableCollection<PositionModel> positionModels)
         {
             Caption = caption;
             PositionModels = positionModels;

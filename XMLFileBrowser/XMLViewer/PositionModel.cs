@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace XMLFileBrowser.XMLViewer
 {
+    /// <summary>
+    /// Модель позиций
+    /// </summary>
     public class PositionModel
     {
 
@@ -29,12 +33,12 @@ namespace XMLFileBrowser.XMLViewer
         /// </summary>
         public string Quantity { get; }
 
-        public List<ResourceModel> ResourcesModels { get; }
+        public ObservableCollection<ResourceModel> ResourcesModels { get; }
 
         /// <summary>
         /// Создает экземпляр класса <see cref="PositionModel"/>
         /// </summary>
-        public PositionModel(string code, string caption, string units, string quantity, List<ResourceModel> resourceModels)
+        public PositionModel(string code, string caption, string units, string quantity, ObservableCollection<ResourceModel> resourceModels)
         {
             Code = code;
             Caption = caption;

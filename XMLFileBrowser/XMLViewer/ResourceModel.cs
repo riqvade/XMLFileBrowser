@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace XMLFileBrowser.XMLViewer
 {
+    /// <summary>
+    /// Модель ресурсов
+    /// </summary>
     public class ResourceModel
     {
         /// <summary>
