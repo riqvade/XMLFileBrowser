@@ -8,10 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SSP">
 
-    <Grid Background="Green">
+    <Grid Background="BurlyWood">
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid
@@ -19,27 +18,28 @@
             AllowDrop="True"
             Background="{StaticResource DradDropArea}"
             DragOver="DragDropArea_DragOver"
-            Drop="DragDropArea_Drop" />
+            Drop="DragDropArea_Drop">
 
-        <TextBlock
+            <TextBlock
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontFamily="{StaticResource FontOfStartScreenText}"
             FontSize="42"
             Text="Drop XML file Here" />
 
-        <Rectangle
+            <Rectangle
             Width="600"
             Height="150"
             Stroke="{StaticResource BorderOfFigure}"
             StrokeDashArray="4 4"
             StrokeThickness="2" />
+        </Grid>
 
         <Button
             Height="30"
             Width="100"
-            Grid.Row="1"
-            Margin="10,30"
+            Margin="10,20"
+            VerticalAlignment="Bottom"
             HorizontalAlignment="Center"
             Command="{Binding AddImagesCommand}"
             Content="Add Images" />

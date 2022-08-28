@@ -12,7 +12,7 @@
 
     <Grid x:Name="Root_Grid">
 
-        <DataGrid ItemsSource="{Binding People}" AutoGenerateColumns="False" RowDetailsVisibilityMode="Collapsed">
+        <DataGrid ItemsSource="{Binding ChapterModels}" AutoGenerateColumns="False" RowDetailsVisibilityMode="Collapsed">
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
@@ -24,16 +24,14 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
-                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Возраст" Binding="{Binding Age}" />
+                <DataGridTextColumn Header="ID" Binding="{Binding Caption}" />
             </DataGrid.Columns>
 
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
                     <DataGrid
                         Margin="20,0,0,0"
-                        ItemsSource="{Binding Tasks}"
+                        ItemsSource="{Binding PositionModels}"
                         AutoGenerateColumns="False"
                         RowDetailsVisibilityMode="Collapsed">
                         <DataGrid.Columns>
@@ -48,24 +46,24 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
 
-                            <DataGridTextColumn Binding="{Binding Id}"/>
-                            <DataGridTextColumn Binding="{Binding Id}"/>
-                            <DataGridTextColumn Binding="{Binding Title}"/>
-                            <DataGridTextColumn Binding="{Binding Description}"/>
+                            <DataGridTextColumn Binding="{Binding Code}"/>
+                            <DataGridTextColumn Binding="{Binding Caption}"/>
+                            <DataGridTextColumn Binding="{Binding Units}"/>
+                            <DataGridTextColumn Binding="{Binding Quantity}"/>
                         </DataGrid.Columns>
 
                         <DataGrid.RowDetailsTemplate>
                             <DataTemplate>
                                 <DataGrid
                                     Margin="20,0,0,0"
-                                    ItemsSource="{Binding SubTasks}"
+                                    ItemsSource="{Binding ResourcesModels}"
                                     AutoGenerateColumns="False"
                                     RowDetailsVisibilityMode="Collapsed">
                                     <DataGrid.Columns>
-                                       
-                                        <DataGridTextColumn Binding="{Binding Id}"/>
-                                        <DataGridTextColumn Binding="{Binding Title}"/>
-                                        <DataGridTextColumn Binding="{Binding Description}"/>
+
+                                        <DataGridTextColumn Binding="{Binding Code}"/>
+                                        <DataGridTextColumn Binding="{Binding Caption}"/>
+                                        <DataGridTextColumn Binding="{Binding Quantity}"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </DataTemplate>

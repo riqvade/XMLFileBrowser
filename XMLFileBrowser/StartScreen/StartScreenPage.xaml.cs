@@ -1,12 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Controls;
+using XMLFileBrowser.Components;
 using XMLFileBrowser.Infrastructure.Services;
 
 namespace XMLFileBrowser.StartScreen
 {
     /// <summary>
-    /// Логика взаимодействия для SSP.xaml
+    /// Логика взаимодействия для StartScreenPage.xaml
     /// </summary>
     public partial class StartScreenPage : Page
     {
@@ -59,7 +60,9 @@ namespace XMLFileBrowser.StartScreen
             if (!string.IsNullOrEmpty(droppedFilenames[0]))
             {
                 NavigationService navigationService = App.Current.Services.GetService<NavigationService>();
-                navigationService.GoToImageEditor();
+                FileService fileService = App.Current.Services.GetService<FileService>();
+                fileService.AddFile(droppedFilenames[0]);
+                navigationService.GoToXMLViewer();
             }
         }
     }

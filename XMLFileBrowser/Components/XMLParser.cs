@@ -17,11 +17,11 @@ namespace XMLFileBrowser.Components
         /// <summary>
         /// Парсит XML файл
         /// </summary>
-        public static void ParceXML()
+        public static ObservableCollection<ChapterModel> ParceXML()
         {
             XmlDocument xDoc = new XmlDocument();
 
-            List<ChapterModel> chapterModels = new List<ChapterModel>();
+            ObservableCollection<ChapterModel> chapterModels = new ObservableCollection<ChapterModel>();
 
             xDoc.Load(@"C:\Users\riqvade\Desktop\Тестовое задание газпром Тюмень\ЛС 02-01-01-01_test.XML");
             // получим корневой элемент
@@ -101,6 +101,7 @@ namespace XMLFileBrowser.Components
                     chapterModels.Add(chapterModel);
                 }
             }
+            return chapterModels;
         }
     }
 }

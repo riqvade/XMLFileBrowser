@@ -1,11 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+using XMLFileBrowser.Components;
 using XMLFileBrowser.Infrastructure.Services;
 using XMLFileBrowser.StartScreen;
 
@@ -42,6 +38,8 @@ namespace XMLFileBrowser
             return new ServiceCollection()
                 .AddTransient<StartScreenViewModel>()
                 .AddSingleton<NavigationService>()
+                .AddSingleton<FileService>()
+                .AddSingleton<FileContentService>()
                 .BuildServiceProvider();
         }
     }

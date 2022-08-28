@@ -88,6 +88,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Components\FileContentService.cs" />
+    <Compile Include="Components\FileService.cs" />
     <Compile Include="Components\XMLLoader.cs" />
     <Compile Include="Components\XMLParser.cs" />
     <Compile Include="Controls\ThreeGridControl.xaml.cs">
@@ -107,10 +109,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="XMLViewer\ChapterModel.cs" />
+    <Compile Include="XMLViewer\ChapterViewModel.cs" />
     <Compile Include="XMLViewer\EmployeeInfo.cs" />
-    <Compile Include="XMLViewer\Person.cs" />
-    <Compile Include="XMLViewer\PersonSubTasks.cs" />
-    <Compile Include="XMLViewer\PersonTask.cs" />
     <Compile Include="XMLViewer\PositionModel.cs" />
     <Compile Include="XMLViewer\ResourceModel.cs" />
     <Compile Include="XMLViewer\ViewModel.cs" />

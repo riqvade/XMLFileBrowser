@@ -2,19 +2,18 @@
 
 namespace XMLFileBrowser.Infrastructure.Services
 {
+    /// <summary>
+    /// Сервис навигации
+    /// </summary>
     public class NavigationService
     {
-        #region Public Methods
-
         /// <summary>
-        /// Осуществляет переход на страницу изменения изображений
+        /// Осуществляет переход на страницу XML обозревателя.
         /// </summary>
-        public void GoToImageEditor()
+        public void GoToXMLViewer()
         {
             MainWindow window = (MainWindow)App.Current.MainWindow;
             window.MainFrame.Content = new XMLViewerPage();
         }
-
-        #endregion Public Methods
     }
 }

@@ -11,12 +11,20 @@ using XMLFileBrowser.Infrastructure.Services;
 
 namespace XMLFileBrowser.StartScreen
 {
+    /// <summary>
+    /// Экземпляр ViewModel стартовой страницы
+    /// </summary>
     class StartScreenViewModel : ViewModelBase
     {
         /// <summary>
         /// Сервис навигации
         /// </summary>
         private readonly NavigationService _navigationService;
+
+        /// <summary>
+        /// Сервис навигации
+        /// </summary>
+        private readonly FileService _fileService;
 
         /// <summary>
         /// Команда для загрузки пути к XML файлу
@@ -32,7 +40,7 @@ namespace XMLFileBrowser.StartScreen
             {
                 return new RelayCommand(() =>
                 {
-                    LoadImagesAndGoToImageEditor();
+                    LoadImagesAndGoToXMLViewer();
                 });
             }
         }
@@ -40,22 +48,24 @@ namespace XMLFileBrowser.StartScreen
         /// <summary>
         /// Создает экземпляр класса <see cref="StartScreenViewModel"/>
         /// </summary>
-        public StartScreenViewModel(NavigationService navigationService)
+        public StartScreenViewModel(NavigationService navigationService, FileService fileService)
         {
             _navigationService = navigationService;
-            AddImagesCommand = new RelayCommand(LoadImagesAndGoToImageEditor);
+            _fileService = fileService;
+            AddImagesCommand = new RelayCommand(LoadImagesAndGoToXMLViewer);
         }
 
         /// <summary>
-        /// Загружает путь к XML файлу.
+        /// Загружает путь к XML файлу и осуществляет переход на страницу XML обозревателя.
         /// </summary>
-        private void LoadImagesAndGoToImageEditor()
+        private void LoadImagesAndGoToXMLViewer()
         {
             string filePath = XMLLoader.GetXmlFilePath();
 
             if (!string.IsNullOrEmpty(filePath))
             {
-                _navigationService.GoToImageEditor();
+                _fileService.AddFile(filePath);
+                _navigationService.GoToXMLViewer();
             }
         }
     }
