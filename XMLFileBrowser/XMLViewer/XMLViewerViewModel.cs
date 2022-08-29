@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows;
 using XMLFileBrowser.Components;
 
 namespace XMLFileBrowser.XMLViewer
@@ -38,6 +39,11 @@ namespace XMLFileBrowser.XMLViewer
                 Set(ref _fileName, value);
             }
         }
+
+        /// <summary>
+        /// Имя файла
+        /// </summary>
+        public Visibility visib { get; set; } = Visibility.Collapsed;
 
         /// <summary>
         /// Главы

@@ -10,6 +10,9 @@ namespace XMLFileBrowser.XMLViewer
     /// </summary>
     public partial class XMLViewerPage : Page
     {
+        private const string PLUS = "+";
+        private const string MINUS = "-";
+
         /// <summary>
         /// Создает экземпляр класса <see cref="XMLViewerPage"/>
         /// </summary>
@@ -29,18 +32,39 @@ namespace XMLFileBrowser.XMLViewer
                 if (vis is DataGridRow)
                 {
                     var row = (DataGridRow)vis;
+
+                    ChapterModel chapterModel = row.Item as ChapterModel;
+
+                    if (chapterModel != null)
+                    {
+                        if (chapterModel.Positions.Count == 0)
+                        {
+                            break;
+                        }
+                    }
+
+                    Position position = row.Item as Position;
+
+                    if(position != null)
+                    {
+                        if (position.Resources.Count == 0)
+                        {
+                            break;
+                        }
+                    }
+
                     row.DetailsVisibility = row.DetailsVisibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
 
                     break;
                 }
             }
+
             for (Visual vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
             {
                 if (vis is Button)
                 {
-                    var button = (Button)vis;
-                    button.Content = button.Content.Equals("+") ? "-" : "+";
-
+                    Button button = (Button)vis;
+                    button.Content = button.Content.Equals(PLUS) ? MINUS : PLUS;
                     break;
                 }
             }
