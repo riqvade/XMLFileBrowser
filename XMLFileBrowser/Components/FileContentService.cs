@@ -19,9 +19,9 @@ namespace XMLFileBrowser.Components
         private ObservableCollection<ChapterModel> _chapterModels { get; set; } = new ObservableCollection<ChapterModel>();
 
         /// <summary>
-        /// Добавляет изображения
+        /// Добавляет главы
         /// </summary>
-        public void AddChapter(ObservableCollection<ChapterModel> chapters)
+        public void AddChapters(ObservableCollection<ChapterModel> chapters)
         {
             if (chapters != null)
             {

@@ -11,6 +11,9 @@ namespace XMLFileBrowser.StartScreen
     /// </summary>
     public partial class StartScreenPage : Page
     {
+        /// <summary>
+        /// Создает экземпляр класса <see cref="StartScreenPage"/>
+        /// </summary>
         public StartScreenPage()
         {
             InitializeComponent();

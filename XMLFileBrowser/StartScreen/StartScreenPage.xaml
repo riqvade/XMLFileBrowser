@@ -36,13 +36,12 @@
         </Grid>
 
         <Button
-            Height="30"
-            Width="100"
             Margin="10,20"
+            Padding="10,4"
             VerticalAlignment="Bottom"
             HorizontalAlignment="Center"
-            Command="{Binding AddImagesCommand}"
-            Content="Add Images" />
+            Command="{Binding AddFileCommand}"
+            Content="Add File" />
 
     </Grid>
 </Page>

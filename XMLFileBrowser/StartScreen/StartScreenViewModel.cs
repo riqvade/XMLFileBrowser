@@ -29,7 +29,7 @@ namespace XMLFileBrowser.StartScreen
         /// <summary>
         /// Команда для загрузки пути к XML файлу
         /// </summary>
-        public RelayCommand AddImagesCommand { get; }
+        public RelayCommand AddFileCommand { get; }
 
         /// <summary>
         /// Открывает документ и отображает его свойства
@@ -52,7 +52,7 @@ namespace XMLFileBrowser.StartScreen
         {
             _navigationService = navigationService;
             _fileService = fileService;
-            AddImagesCommand = new RelayCommand(LoadImagesAndGoToXMLViewer);
+            AddFileCommand = new RelayCommand(LoadImagesAndGoToXMLViewer);
         }
 
         /// <summary>

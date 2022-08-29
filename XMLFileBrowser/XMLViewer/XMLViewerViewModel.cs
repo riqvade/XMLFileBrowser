@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,8 +10,15 @@ using XMLFileBrowser.Components;
 
 namespace XMLFileBrowser.XMLViewer
 {
-    public class XMLViewerViewModel
+    /// <summary>
+    /// Экземпляр ViewModel страницы обозревателя
+    /// </summary>
+    public class XMLViewerViewModel : ViewModelBase
     {
+        /// <summary>
+        /// Имя файла
+        /// </summary>
+        public string _fileName;
 
         /// <summary>
         /// Сервис для работы с содержимым файла
@@ -17,30 +26,40 @@ namespace XMLFileBrowser.XMLViewer
         private readonly FileContentService _fileContentService;
 
         /// <summary>
-        /// Список изображений
+        /// Сервис файлов
         /// </summary>
-        public ObservableCollection<ChapterViewModel> Chapters { get; } = new ObservableCollection<ChapterViewModel>();
+        private readonly FileService _fileService;
 
-
-        public XMLViewerViewModel(FileContentService fileContentService)
+        /// <summary>
+        /// Сервис файлов
+        /// </summary>
+        public string FileName
         {
-            _fileContentService = fileContentService;
-            AddChaptersInChapterViewModel();
+            get => _fileName;
+            set => Set(ref _fileName, value);
         }
 
         /// <summary>
-        /// Загружает изображения
+        /// Список изображений
         /// </summary>
-        private async void LoadFiles()
+        public ObservableCollection<ChapterModel> Chapters { get; set; } = new ObservableCollection<ChapterModel>();
+
+        /// <summary>
+        /// Команда для загрузки файла
+        /// </summary>
+        public RelayCommand AddFileCommand { get; }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="XMLViewerViewModel"/>
+        /// </summary>
+        public XMLViewerViewModel(FileContentService fileContentService, FileService fileService)
         {
-            //IReadOnlyCollection<StorageFile> storageFiles = await ImagesLoader.GetImageFiles();
-
-            //if (storageFiles.Count > 0)
-            //{
-            //    await _imageService.AddImagesAsync(storageFiles);
-            //}
-
-            //AddImagesInImageViewModel();
+            _fileContentService = fileContentService;
+            _fileService = fileService;
+            AddFileCommand = new RelayCommand(LoadFiles);
+            FileName = _fileService.GetFilePath();
+            _fileContentService.AddChapters(XMLParser.ParceXML(FileName));
+            AddChaptersInChapterViewModel();
         }
 
         /// <summary>
@@ -50,10 +69,25 @@ namespace XMLFileBrowser.XMLViewer
         {
             foreach (ChapterModel item in _fileContentService.GetChapters())
             {
-                Chapters.Add(new ChapterViewModel(item));
+                Chapters.Add(item);
             }
 
             _fileContentService.ClearChapters();
+        }
+
+        /// <summary>
+        /// Загружает изображения
+        /// </summary>
+        private void LoadFiles()
+        {
+            string filePath = XMLLoader.GetXmlFilePath();
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                Chapters.Clear();
+                FileName = filePath;
+                _fileContentService.AddChapters(XMLParser.ParceXML(filePath));
+                AddChaptersInChapterViewModel();
+            }
         }
     }
 }

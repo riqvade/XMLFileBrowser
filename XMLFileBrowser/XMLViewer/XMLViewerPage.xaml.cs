@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -23,18 +24,17 @@ namespace XMLFileBrowser.XMLViewer
     public partial class XMLViewerPage : Page
     {
         /// <summary>
-        /// Главы
+        /// Создает экземпляр класса <see cref="XMLViewerPage"/>
         /// </summary>
-        public ObservableCollection<ChapterModel> ChapterModels { get; } = new ObservableCollection<ChapterModel>();
-
         public XMLViewerPage()
         {
             InitializeComponent();
-            DataContext = this;
-
-            ChapterModels = XMLParser.ParceXML();
+            DataContext = App.Current.Services.GetService<XMLViewerViewModel>();
         }
 
+        /// <summary>
+        /// Показывает или скрывает подразделы глав
+        /// </summary>
         private void ShowHideDetails(object sender, RoutedEventArgs e)
         {
             for (Visual vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
@@ -47,7 +47,6 @@ namespace XMLFileBrowser.XMLViewer
                     break;
                 }
             }
-
             for (Visual vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
             {
                 if (vis is Button)

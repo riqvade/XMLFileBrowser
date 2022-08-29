@@ -4,6 +4,7 @@ using System.Windows;
 using XMLFileBrowser.Components;
 using XMLFileBrowser.Infrastructure.Services;
 using XMLFileBrowser.StartScreen;
+using XMLFileBrowser.XMLViewer;
 
 namespace XMLFileBrowser
 {
@@ -40,6 +41,7 @@ namespace XMLFileBrowser
                 .AddSingleton<NavigationService>()
                 .AddSingleton<FileService>()
                 .AddSingleton<FileContentService>()
+                .AddSingleton<XMLViewerViewModel>()
                 .BuildServiceProvider();
         }
     }

@@ -15,12 +15,12 @@ namespace XMLFileBrowser.XMLViewer
         /// <summary>
         /// Заголовок
         /// </summary>
-        public string Caption { get; }
+        public string Caption { get; set; }
 
         /// <summary>
         /// Модель позиции
         /// </summary>
-        public ObservableCollection<PositionModel> PositionModels { get; }
+        public ObservableCollection<PositionModel> PositionModels { get; set; }
 
         /// <summary>
         /// Создает экземпляр класса <see cref="ChapterModel"/>

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace XMLFileBrowser.Components
 {
     /// <summary>
-    /// Осуществляет загрузку пути XML файла
+    /// Осуществляет загрузку XML файла в приложение
     /// </summary>
     public static class XMLLoader
     {
@@ -19,7 +19,6 @@ namespace XMLFileBrowser.Components
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            openFileDialog.InitialDirectory = "c:\\";
             openFileDialog.Multiselect = true;
             openFileDialog.Filter = "Excel Files|*.XML";
             openFileDialog.RestoreDirectory = true;

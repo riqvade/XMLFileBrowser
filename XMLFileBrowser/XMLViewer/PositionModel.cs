@@ -16,24 +16,24 @@ namespace XMLFileBrowser.XMLViewer
         /// <summary>
         /// Код
         /// </summary>
-        public string Code { get; }
+        public string Code { get; set; }
 
         /// <summary>
         /// Заголовок
         /// </summary>
-        public string Caption { get; }
+        public string Caption { get; set; }
 
         /// <summary>
         /// Единицы
         /// </summary>
-        public string Units { get; }
+        public string Units { get; set; }
 
         /// <summary>
         /// Количество
         /// </summary>
-        public string Quantity { get; }
+        public string Quantity { get; set; }
 
-        public ObservableCollection<ResourceModel> ResourcesModels { get; }
+        public ObservableCollection<ResourceModel> ResourcesModels { get; set; }
 
         /// <summary>
         /// Создает экземпляр класса <see cref="PositionModel"/>

@@ -14,7 +14,7 @@ namespace XMLFileBrowser.XMLViewer
         /// <summary>
         /// Модель главы
         /// </summary>
-        public ChapterModel ChapterModel { get; }
+        public ChapterModel ChapterModel { get; set; }
 
         /// <summary>
         /// Создает экземпляр класса <see cref="ChapterViewModel"/>

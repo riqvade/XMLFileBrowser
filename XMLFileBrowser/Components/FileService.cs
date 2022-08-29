@@ -14,10 +14,14 @@ namespace XMLFileBrowser.Components
     {
         private string FilePath { get; set; }
 
+        public string GetFilePath()
+        {
+            return FilePath;
+        }
+
         public void AddFile(string filePath)
         {
             FilePath = filePath;
         }
-
     }
 }
