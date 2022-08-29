@@ -1,11 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using XMLFileBrowser.Components;
 
 namespace XMLFileBrowser.XMLViewer
@@ -36,7 +32,11 @@ namespace XMLFileBrowser.XMLViewer
         public string FileName
         {
             get => _fileName;
-            set => Set(ref _fileName, value);
+            set 
+            {
+                value = Path.GetFileName(value);
+                Set(ref _fileName, value);
+            }
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace XMLFileBrowser.XMLViewer
             _fileService = fileService;
             AddFileCommand = new RelayCommand(LoadFiles);
             FileName = _fileService.GetFilePath();
-            _fileContentService.AddChapters(XMLParser.ParceXML(FileName));
+            _fileContentService.AddChapters(XMLParser.ParceXML(_fileService.GetFilePath()));
             AddChaptersInChapterViewModel();
         }
 
