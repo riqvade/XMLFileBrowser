@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Xml;
-using XMLFileBrowser.Components;
+﻿using System.Windows;
 using XMLFileBrowser.StartScreen;
-using XMLFileBrowser.XMLViewer;
 
 namespace XMLFileBrowser
 {
@@ -13,16 +8,13 @@ namespace XMLFileBrowser
     /// </summary>
     public partial class MainWindow : Window
     {
-        
-
+        /// <summary>
+        /// Создает экземпляр класса <see cref="MainWindow"/>
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
             MainFrame.Content = new StartScreenPage();
-
-            //XMLParser.ParceXML();
         }
-
-      
     }
 }

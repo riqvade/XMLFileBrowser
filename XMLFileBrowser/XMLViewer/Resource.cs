@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace XMLFileBrowser.XMLViewer
+﻿namespace XMLFileBrowser.XMLViewer
 {
     /// <summary>
-    /// Модель ресурсов
+    /// Ресурс
     /// </summary>
-    public class ResourceModel
+    public class Resource
     {
         /// <summary>
         /// Код
@@ -27,9 +21,9 @@ namespace XMLFileBrowser.XMLViewer
         public string Quantity { get; set; }
 
         /// <summary>
-        /// Создает экземпляр класса <see cref="ResourceModel"/>
+        /// Создает экземпляр класса <see cref="Resource"/>
         /// </summary>
-        public ResourceModel(string code, string caption, string quantity)
+        public Resource(string code, string caption, string quantity)
         {
             Code = code;
             Caption = caption;

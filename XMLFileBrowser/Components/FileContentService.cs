@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XMLFileBrowser.XMLViewer;
 
 namespace XMLFileBrowser.Components
@@ -16,7 +12,7 @@ namespace XMLFileBrowser.Components
         /// <summary>
         /// Главы
         /// </summary>
-        private ObservableCollection<ChapterModel> _chapterModels { get; set; } = new ObservableCollection<ChapterModel>();
+        private ObservableCollection<ChapterModel> _chapters { get; set; } = new ObservableCollection<ChapterModel>();
 
         /// <summary>
         /// Добавляет главы
@@ -25,10 +21,7 @@ namespace XMLFileBrowser.Components
         {
             if (chapters != null)
             {
-                foreach (ChapterModel chapter in chapters)
-                {
-                    _chapterModels = chapters;
-                }
+                _chapters = chapters;
             }
             else
             {
@@ -39,9 +32,9 @@ namespace XMLFileBrowser.Components
         /// <summary>
         /// Возвращает главы
         /// </summary>
-        public IReadOnlyCollection<ChapterModel> GetChapters()
+        public ObservableCollection<ChapterModel> GetChapters()
         {
-            return _chapterModels;
+            return _chapters;
         }
 
         /// <summary>
@@ -49,7 +42,7 @@ namespace XMLFileBrowser.Components
         /// </summary>
         public void ClearChapters()
         {
-            _chapterModels.Clear();
+            _chapters.Clear();
         }
     }
 }

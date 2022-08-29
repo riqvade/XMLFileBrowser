@@ -27,7 +27,7 @@ namespace XMLFileBrowser.XMLViewer
         private readonly FileService _fileService;
 
         /// <summary>
-        /// Сервис файлов
+        /// Имя файла
         /// </summary>
         public string FileName
         {
@@ -40,7 +40,7 @@ namespace XMLFileBrowser.XMLViewer
         }
 
         /// <summary>
-        /// Список изображений
+        /// Главы
         /// </summary>
         public ObservableCollection<ChapterModel> Chapters { get; set; } = new ObservableCollection<ChapterModel>();
 
@@ -56,9 +56,9 @@ namespace XMLFileBrowser.XMLViewer
         {
             _fileContentService = fileContentService;
             _fileService = fileService;
-            AddFileCommand = new RelayCommand(LoadFiles);
+            AddFileCommand = new RelayCommand(LoadFile);
             FileName = _fileService.GetFilePath();
-            _fileContentService.AddChapters(XMLParser.ParceXML(_fileService.GetFilePath()));
+            _fileContentService.AddChapters(XMLParser.ParceXMLFile(_fileService.GetFilePath()));
             AddChaptersInChapterViewModel();
         }
 
@@ -76,16 +76,16 @@ namespace XMLFileBrowser.XMLViewer
         }
 
         /// <summary>
-        /// Загружает изображения
+        /// Загружает файл
         /// </summary>
-        private void LoadFiles()
+        private void LoadFile()
         {
             string filePath = XMLLoader.GetXmlFilePath();
             if (!string.IsNullOrEmpty(filePath))
             {
                 Chapters.Clear();
                 FileName = filePath;
-                _fileContentService.AddChapters(XMLParser.ParceXML(filePath));
+                _fileContentService.AddChapters(XMLParser.ParceXMLFile(filePath));
                 AddChaptersInChapterViewModel();
             }
         }

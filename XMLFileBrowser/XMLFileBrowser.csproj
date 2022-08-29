@@ -92,10 +92,6 @@
     <Compile Include="Components\FileService.cs" />
     <Compile Include="Components\XMLLoader.cs" />
     <Compile Include="Components\XMLParser.cs" />
-    <Compile Include="Controls\ThreeGridControl.xaml.cs">
-      <DependentUpon>ThreeGridControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ThreeGridControlViewModel.cs" />
     <Compile Include="Infrastructure\Services\NavigationService.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -110,16 +106,12 @@
     </Compile>
     <Compile Include="XMLViewer\ChapterModel.cs" />
     <Compile Include="XMLViewer\ChapterViewModel.cs" />
-    <Compile Include="XMLViewer\PositionModel.cs" />
-    <Compile Include="XMLViewer\ResourceModel.cs" />
+    <Compile Include="XMLViewer\Position.cs" />
+    <Compile Include="XMLViewer\Resource.cs" />
     <Compile Include="XMLViewer\XMLViewerPage.xaml.cs">
       <DependentUpon>XMLViewerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="XMLViewer\XMLViewerViewModel.cs" />
-    <Page Include="Controls\ThreeGridControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

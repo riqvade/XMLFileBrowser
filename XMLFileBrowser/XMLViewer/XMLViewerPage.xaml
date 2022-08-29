@@ -4,7 +4,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:XMLFileBrowser.XMLViewer"
       Background="{StaticResource BackgroundOfPage}"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
@@ -37,15 +36,22 @@
                 VerticalAlignment="Center"/>
         </Grid>
 
-        <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible">
-            <DataGrid ItemsSource="{Binding Path=Chapters}" AutoGenerateColumns="False" RowDetailsVisibilityMode="Collapsed">
+        <ScrollViewer 
+            Grid.Row="1" 
+            ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+            ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <DataGrid 
+                ItemsSource="{Binding Path=Chapters}" 
+                AutoGenerateColumns="False" 
+                RowDetailsVisibilityMode="Collapsed">
+                
                 <DataGrid.Columns>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button
                                     Content = "+"
-                                    Click="ShowHideDetails">
+                                    Click="ShowOrHideDetails">
                                 </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -57,7 +63,7 @@
                     <DataTemplate>
                         <DataGrid
                         Margin="20,0,0,0"
-                        ItemsSource="{Binding PositionModels}"
+                        ItemsSource="{Binding Positions}"
                         AutoGenerateColumns="False"
                         RowDetailsVisibilityMode="Collapsed">
                             <DataGrid.Columns>
@@ -66,7 +72,7 @@
                                         <DataTemplate>
                                             <Button 
                                                 Content = "+"
-                                                Click="ShowHideDetails">
+                                                Click="ShowOrHideDetails">
                                             </Button>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -81,7 +87,7 @@
                                 <DataTemplate>
                                     <DataGrid
                                     Margin="20,0,0,0"
-                                    ItemsSource="{Binding ResourcesModels}"
+                                    ItemsSource="{Binding Resources}"
                                     AutoGenerateColumns="False"
                                     RowDetailsVisibilityMode="Collapsed">
                                         <DataGrid.Columns>
