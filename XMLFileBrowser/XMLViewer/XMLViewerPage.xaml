@@ -38,7 +38,6 @@
 
         <ScrollViewer 
             Grid.Row="1" 
-            ScrollViewer.HorizontalScrollBarVisibility="Visible" 
             ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid 
                 ItemsSource="{Binding Path=Chapters}" 
@@ -56,7 +55,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="ID" Binding="{Binding Caption}" />
+                    <DataGridTextColumn Binding="{Binding Caption}" />
                 </DataGrid.Columns>
 
                 <DataGrid.RowDetailsTemplate>
