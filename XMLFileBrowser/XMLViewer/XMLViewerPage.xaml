@@ -25,6 +25,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Button 
@@ -35,11 +36,20 @@
                 HorizontalAlignment="Left"/>
 
             <TextBlock 
+                Grid.Column="1"
                 x:Name="FileName" 
-                Margin="10" Grid.Column="1" 
+                Margin="10" 
                 d:Text="file №1" 
                 Text="{Binding FileName}"
                 VerticalAlignment="Center"/>
+
+            <Button 
+                Grid.Column="2"
+                Margin="10"
+                Padding="5,2"
+                Command="{Binding ExportToExcelCommand}"
+                Content="Export to Excel"
+                HorizontalAlignment="Left"/>
         </Grid>
 
         <ScrollViewer 
@@ -55,8 +65,8 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button
-                                    Background="LightSteelBlue"
-                                    BorderBrush="LightSteelBlue"
+                                    Background="{StaticResource BackgroundButtonColor}"
+                                    BorderBrush="{StaticResource BackgroundButtonColor}"
                                     Content = "+"
                                     Visibility="{Binding Positions, Converter={StaticResource CountPositionsToVisibilityConverter}}"
                                     Click="ShowOrHideDetails">
@@ -81,8 +91,8 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button 
-                                                Background="LightSteelBlue"
-                                                BorderBrush="LightSteelBlue"
+                                                Background="{StaticResource BackgroundButtonColor}"
+                                                BorderBrush="{StaticResource BackgroundButtonColor}"
                                                 Content = "+"
                                                 Visibility="{Binding Resources, Converter={StaticResource CountToVisibleConverter}}"
                                                 Click="ShowOrHideDetails">

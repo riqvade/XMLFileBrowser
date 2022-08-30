@@ -56,6 +56,11 @@ namespace XMLFileBrowser.XMLViewer
         public RelayCommand AddFileCommand { get; }
 
         /// <summary>
+        /// Команда для экспорта данных в excel
+        /// </summary>
+        public RelayCommand ExportToExcelCommand { get; }
+
+        /// <summary>
         /// Создает экземпляр класса <see cref="XMLViewerViewModel"/>
         /// </summary>
         public XMLViewerViewModel(FileContentService fileContentService, FileService fileService)
@@ -63,6 +68,7 @@ namespace XMLFileBrowser.XMLViewer
             _fileContentService = fileContentService;
             _fileService = fileService;
             AddFileCommand = new RelayCommand(LoadFile);
+            ExportToExcelCommand = new RelayCommand(ExportToExcel);
             FileName = _fileService.GetFilePath();
             _fileContentService.AddChapters(XMLParser.ParceXMLFile(_fileService.GetFilePath()));
             AddChaptersInChapterViewModel();
@@ -77,8 +83,6 @@ namespace XMLFileBrowser.XMLViewer
             {
                 Chapters.Add(item);
             }
-
-            _fileContentService.ClearChapters();
         }
 
         /// <summary>
@@ -90,10 +94,19 @@ namespace XMLFileBrowser.XMLViewer
             if (!string.IsNullOrEmpty(filePath))
             {
                 Chapters.Clear();
+                _fileContentService.ClearChapters();
                 FileName = filePath;
                 _fileContentService.AddChapters(XMLParser.ParceXMLFile(filePath));
                 AddChaptersInChapterViewModel();
             }
+        }
+
+        /// <summary>
+        /// Экспортирует загруженные данные в excel файл
+        /// </summary>
+        private void ExportToExcel()
+        {
+            ExportManager.ExportDataToExcel(@"C:\Users\riqvade\Desktop\excelFile.xlsx");
         }
     }
 }
