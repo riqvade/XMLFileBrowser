@@ -7,6 +7,10 @@ namespace XMLFileBrowser.XMLViewer
     /// </summary>
     public class Position
     {
+        /// <summary>
+        /// Номер позиции
+        /// </summary>
+        public string Number { get; set; }
 
         /// <summary>
         /// Код
@@ -33,13 +37,14 @@ namespace XMLFileBrowser.XMLViewer
         /// <summary>
         /// Создает экземпляр класса <see cref="Position"/>
         /// </summary>
-        public Position(string code, string caption, string units, string quantity, ObservableCollection<Resource> resources)
+        public Position(string code, string caption, string units, string quantity, ObservableCollection<Resource> resources, string number)
         {
             Code = code;
             Caption = caption;
             Units = units;
             Quantity = quantity;
             Resources = resources;
+            Number = number;
         }
     }
 }

@@ -91,6 +91,8 @@
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
 
+                                <DataGridTextColumn Binding="{Binding Number}"/>
+
                                 <DataGridTextColumn Binding="{Binding Code}" Width="150">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
@@ -127,7 +129,13 @@
                                     RowDetailsVisibilityMode="Collapsed">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Binding="{Binding Code}"/>
-                                            <DataGridTextColumn Binding="{Binding Caption}"/>
+                                            <DataGridTextColumn Binding="{Binding Caption}" Width="500">
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                            </DataGridTextColumn>
                                             <DataGridTextColumn Binding="{Binding Quantity}"/>
                                         </DataGrid.Columns>
                                     </DataGrid>

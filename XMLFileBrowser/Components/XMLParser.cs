@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Xml;
+using XMLFileBrowser.Helpers;
 using XMLFileBrowser.XMLViewer;
 
 namespace XMLFileBrowser.Components
@@ -43,7 +44,6 @@ namespace XMLFileBrowser.Components
                             string positionCaption;
                             string positionUnits;
                             string positionQuantityFx;
-                            string positionQuantityResult;
 
                             ObservableCollection<Resource> resourceModels = new ObservableCollection<Resource>();
 
@@ -58,8 +58,11 @@ namespace XMLFileBrowser.Components
 
                             positionQuantityFx = quantityNode.Attributes.GetNamedItem("Fx")?.Value;
                             Debug.WriteLine("*** " + quantityNode.Attributes.GetNamedItem("Fx")?.Value);
-                            positionQuantityResult = quantityNode.Attributes.GetNamedItem("Result")?.Value;
-                            Debug.WriteLine("*** " + quantityNode.Attributes.GetNamedItem("Result")?.Value);
+
+                            positionQuantityFx = StringCalculator.ColculateNumExpression(positionQuantityFx);
+
+                            Debug.WriteLine("*** " + positionQuantityFx);
+                            Debug.WriteLine("*** Result From File" + quantityNode.Attributes.GetNamedItem("Result")?.Value);
 
                             XmlNode resourcesNodes = positionNode.SelectSingleNode("Resources");
 
@@ -80,7 +83,8 @@ namespace XMLFileBrowser.Components
                                     Debug.WriteLine("---------------------------------------------");
                                 }
                             }
-                            Position positionModel = new Position(positionCode, positionCaption, positionUnits, positionQuantityFx, resourceModels);
+
+                            Position positionModel = new Position(positionCode, positionCaption, positionUnits, positionQuantityFx, resourceModels, (positionModels.Count + 1).ToString());
                             positionModels.Add(positionModel);
                             Debug.WriteLine("");
                         }

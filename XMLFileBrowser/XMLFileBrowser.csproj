@@ -206,6 +206,7 @@
     <Compile Include="Components\XMLParser.cs" />
     <Compile Include="Converters\CountPositionsToVisibilityConverter.cs" />
     <Compile Include="Converters\CountResourcesToVisibilityConverter.cs" />
+    <Compile Include="Helpers\StringCalculator.cs" />
     <Compile Include="Infrastructure\Services\NavigationService.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

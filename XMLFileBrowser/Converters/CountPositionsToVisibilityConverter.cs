@@ -35,7 +35,6 @@ namespace XMLFileBrowser.Converters
             }
             return visibility;
         }
-
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
