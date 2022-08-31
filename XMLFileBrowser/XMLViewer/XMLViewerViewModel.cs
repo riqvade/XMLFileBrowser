@@ -68,9 +68,9 @@ namespace XMLFileBrowser.XMLViewer
             _fileContentService = fileContentService;
             _fileService = fileService;
             AddFileCommand = new RelayCommand(LoadFile);
-            ExportToExcelCommand = new RelayCommand(ExportToExcel);
-            FileName = _fileService.GetFilePath();
-            _fileContentService.AddChapters(XMLParser.ParceXMLFile(_fileService.GetFilePath()));
+            ExportToExcelCommand = new RelayCommand(SaveFile);
+            FileName = _fileService.GetInputFilePath();
+            _fileContentService.AddChapters(XMLParser.ParceXMLFile(_fileService.GetInputFilePath()));
             AddChaptersInChapterViewModel();
         }
 
@@ -90,14 +90,22 @@ namespace XMLFileBrowser.XMLViewer
         /// </summary>
         private void LoadFile()
         {
-            string filePath = XMLLoader.GetXmlFilePath();
-            if (!string.IsNullOrEmpty(filePath))
+            
+            if (_fileService.SelectInputFile() == true)
             {
                 Chapters.Clear();
                 _fileContentService.ClearChapters();
-                FileName = filePath;
-                _fileContentService.AddChapters(XMLParser.ParceXMLFile(filePath));
+                FileName = _fileService.GetInputFilePath();
+                _fileContentService.AddChapters(XMLParser.ParceXMLFile(_fileService.GetInputFilePath()));
                 AddChaptersInChapterViewModel();
+            }
+        }
+
+        private void SaveFile()
+        {
+            if(_fileService.SelectExportFolder() == true)
+            {
+                ExportManager.ExportDataToExcel(_fileService.GetExportFilePath());
             }
         }
 

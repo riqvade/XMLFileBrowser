@@ -21,7 +21,7 @@ namespace XMLFileBrowser.Components
         /// </summary>
         public static void ExportDataToExcel(string filePath)
         {
-            string mergeRow = "A1:Z1";
+            string mergeRow = "A1:F1";
             int currentRow = 1;
             int currentColumn = 1;
             FileContentService fileContentService = App.Current.Services.GetService<FileContentService>();
@@ -37,10 +37,12 @@ namespace XMLFileBrowser.Components
             {
                 if(chapter != null)
                 {
+                    worksheet.Range(mergeRow).Row(currentRow).Merge();
                     worksheet.Cell(currentRow, currentColumn).Value = chapter.Caption;
                     worksheet.Row(currentRow).Style.Font.Bold = true;
-                    worksheet.Range(mergeRow).Row(currentRow).Merge();
                     worksheet.Cell(currentRow, currentColumn).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                    worksheet.Cell(currentRow, currentColumn).Style.Fill.BackgroundColor = XLColor.CoralRed;
+
                     currentRow += 1;
 
                     foreach (Position position in chapter.Positions)
@@ -48,18 +50,23 @@ namespace XMLFileBrowser.Components
                         currentColumn += 1;
                         worksheet.Cell(currentRow, currentColumn).Value = position.Number;
                         worksheet.Cell(currentRow, currentColumn).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                        worksheet.Cell(currentRow, currentColumn).Style.Fill.BackgroundColor = XLColor.LightBlue;
                         currentColumn += 1;
                         worksheet.Cell(currentRow, currentColumn).Value = position.Code;
                         worksheet.Cell(currentRow, currentColumn).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                        worksheet.Cell(currentRow, currentColumn).Style.Fill.BackgroundColor = XLColor.LightBlue;
                         currentColumn += 1;
                         worksheet.Cell(currentRow, currentColumn).Value = position.Caption;
                         worksheet.Cell(currentRow, currentColumn).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                        worksheet.Cell(currentRow, currentColumn).Style.Fill.BackgroundColor = XLColor.LightBlue;
                         currentColumn += 1;
                         worksheet.Cell(currentRow, currentColumn).Value = position.Units;
                         worksheet.Cell(currentRow, currentColumn).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                        worksheet.Cell(currentRow, currentColumn).Style.Fill.BackgroundColor = XLColor.LightBlue;
                         currentColumn += 1;
                         worksheet.Cell(currentRow, currentColumn).Value = position.Quantity + Convert.ToChar(130);
                         worksheet.Cell(currentRow, currentColumn).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                        worksheet.Cell(currentRow, currentColumn).Style.Fill.BackgroundColor = XLColor.LightBlue;
                         currentColumn = 1;
                         currentRow += 1;
 
@@ -67,10 +74,19 @@ namespace XMLFileBrowser.Components
                         {
                             currentColumn += 2;
                             worksheet.Cell(currentRow, currentColumn).Value = resource.Code;
+                            worksheet.Cell(currentRow, currentColumn).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            worksheet.Cell(currentRow, currentColumn).Style.Fill.BackgroundColor = XLColor.LightGreen;
                             currentColumn += 1;
                             worksheet.Cell(currentRow, currentColumn).Value = resource.Caption;
-                            currentColumn += 2;
+                            worksheet.Cell(currentRow, currentColumn).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            worksheet.Cell(currentRow, currentColumn).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                            currentColumn += 1;
+                            worksheet.Cell(currentRow, currentColumn).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            worksheet.Cell(currentRow, currentColumn).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                            currentColumn += 1;
                             worksheet.Cell(currentRow, currentColumn).Value = resource.Quantity + Convert.ToChar(130);
+                            worksheet.Cell(currentRow, currentColumn).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            worksheet.Cell(currentRow, currentColumn).Style.Fill.BackgroundColor = XLColor.LightGreen;
 
                             currentColumn = 1;
                             currentRow += 1;

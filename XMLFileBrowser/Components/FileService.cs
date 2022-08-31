@@ -1,4 +1,7 @@
-﻿namespace XMLFileBrowser.Components
+﻿using System.IO;
+using System.Windows.Forms;
+
+namespace XMLFileBrowser.Components
 {
     /// <summary>
     /// Сервис для работы с файлами
@@ -6,24 +9,96 @@
     public class FileService
     {
         /// <summary>
-        /// Путь к файлу
+        /// Путь к входному файлу
         /// </summary>
-        private string FilePath { get; set; }
+        private string InputFilePath { get; set; }
 
         /// <summary>
-        /// Возвращает путь к файлу
+        /// Путь к экспортному файлу
         /// </summary>
-        public string GetFilePath()
+        private string ExportFilePath { get; set; }
+
+        /// <summary>
+        /// Возвращает путь к входному файлу
+        /// </summary>
+        public string GetInputFilePath()
         {
-            return FilePath;
+            return InputFilePath;
         }
 
         /// <summary>
-        /// Добавляет путь к файлу
+        /// Возвращает путь к входному файлу
         /// </summary>
-        public void AddFile(string filePath)
+        public string GetExportFilePath()
         {
-            FilePath = filePath;
+            return ExportFilePath;
         }
+
+        /// <summary>
+        /// Добавляет путь к входному файлу
+        /// </summary>
+        public void AddInputFilePath(string filePath)
+        {
+            InputFilePath = filePath;
+        }
+
+        /// <summary>
+        /// Добавляет путь к входному файлу
+        /// </summary>
+        public void AddExportFilePath(string exportFilePath)
+        {
+            ExportFilePath = exportFilePath;
+        }
+
+        /// <summary>
+        /// Осуществляет выбор входного файла
+        /// </summary>
+        public bool SelectInputFile()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Multiselect = true;
+            openFileDialog.Filter = "Excel Files|*.XML";
+            openFileDialog.RestoreDirectory = true;
+
+            string filePath = string.Empty;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                filePath = openFileDialog.FileName;
+
+                InputFilePath = filePath;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Осуществляет выбор папки экспорта
+        /// </summary>
+        public bool SelectExportFolder()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.RestoreDirectory = true;
+            saveFileDialog.Filter = "Excel Files|*.xlsx;";
+            saveFileDialog.FileName = Path.GetFileNameWithoutExtension(InputFilePath);
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ExportFilePath = saveFileDialog.FileName;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+                
+        }
+
     }
 }

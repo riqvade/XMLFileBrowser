@@ -212,7 +212,6 @@
     <Compile Include="Components\ExportManager.cs" />
     <Compile Include="Components\FileContentService.cs" />
     <Compile Include="Components\FileService.cs" />
-    <Compile Include="Components\XMLLoader.cs" />
     <Compile Include="Components\XMLParser.cs" />
     <Compile Include="Converters\CountPositionsToVisibilityConverter.cs" />
     <Compile Include="Converters\CountResourcesToVisibilityConverter.cs" />

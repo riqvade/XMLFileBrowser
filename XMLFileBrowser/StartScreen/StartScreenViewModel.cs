@@ -41,10 +41,8 @@ namespace XMLFileBrowser.StartScreen
         /// </summary>
         private void LoadImagesAndGoToXMLViewer()
         {
-            string filePath = XMLLoader.GetXmlFilePath();
-            if (!string.IsNullOrEmpty(filePath))
+            if (_fileService.SelectInputFile() == true)
             {
-                _fileService.AddFile(filePath);
                 _navigationService.GoToXMLViewer();
             }
         }
