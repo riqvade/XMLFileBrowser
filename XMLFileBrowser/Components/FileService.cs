@@ -97,8 +97,6 @@ namespace XMLFileBrowser.Components
             {
                 return false;
             }
-                
         }
-
     }
 }

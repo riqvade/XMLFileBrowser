@@ -30,10 +30,6 @@ namespace XMLFileBrowser.Components
                     ObservableCollection<Position> positionModels = new ObservableCollection<Position>();
 
                     chapterCaption = chaptersNode.SelectSingleNode("@Caption")?.Value;
-                    Debug.WriteLine(chaptersNode.SelectSingleNode("@Caption")?.Value);
-
-                    Debug.WriteLine("");
-
                     var positionNodes = chaptersNode?.SelectNodes("Position");
 
                     if (positionNodes != null)
@@ -44,25 +40,16 @@ namespace XMLFileBrowser.Components
                             string positionCaption;
                             string positionUnits;
                             string positionQuantityFx;
-
                             ObservableCollection<Resource> resourceModels = new ObservableCollection<Resource>();
 
                             positionCode = positionNode.Attributes.GetNamedItem("Code")?.Value;
-                            Debug.WriteLine("*** " + positionNode.Attributes.GetNamedItem("Code")?.Value);
                             positionCaption = positionNode.Attributes.GetNamedItem("Caption")?.Value;
-                            Debug.WriteLine("*** " + positionNode.Attributes.GetNamedItem("Caption")?.Value);
                             positionUnits = positionNode.Attributes.GetNamedItem("Units")?.Value;
-                            Debug.WriteLine("*** " + positionNode.Attributes.GetNamedItem("Units")?.Value);
 
                             XmlNode quantityNode = positionNode.SelectSingleNode("Quantity");
 
                             positionQuantityFx = quantityNode.Attributes.GetNamedItem("Fx")?.Value;
-                            Debug.WriteLine("*** " + quantityNode.Attributes.GetNamedItem("Fx")?.Value);
-
                             positionQuantityFx = StringCalculator.ColculateNumExpression(positionQuantityFx);
-
-                            Debug.WriteLine("*** " + positionQuantityFx);
-                            Debug.WriteLine("*** Result From File" + quantityNode.Attributes.GetNamedItem("Result")?.Value);
 
                             XmlNode resourcesNodes = positionNode.SelectSingleNode("Resources");
 
@@ -76,17 +63,11 @@ namespace XMLFileBrowser.Components
 
                                     Resource resourceModel = new Resource(resourcesNodeCode, resourcesNodeCaption, resourcesNodeQuantity);
                                     resourceModels.Add(resourceModel);
-
-                                    Debug.WriteLine("******* " + resourcesNodeCode);
-                                    Debug.WriteLine("******* " + resourcesNodeCaption);
-                                    Debug.WriteLine("******* " + resourcesNodeQuantity);
-                                    Debug.WriteLine("---------------------------------------------");
                                 }
                             }
 
                             Position positionModel = new Position(positionCode, positionCaption, positionUnits, positionQuantityFx, resourceModels, (positionModels.Count + 1).ToString());
                             positionModels.Add(positionModel);
-                            Debug.WriteLine("");
                         }
                     }
                     ChapterModel chapterModel = new ChapterModel(chapterCaption, positionModels);
