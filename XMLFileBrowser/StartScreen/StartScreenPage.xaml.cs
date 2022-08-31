@@ -64,7 +64,7 @@ namespace XMLFileBrowser.StartScreen
             {
                 NavigationService navigationService = App.Current.Services.GetService<NavigationService>();
                 FileService fileService = App.Current.Services.GetService<FileService>();
-                fileService.AddFile(droppedFilenames[0]);
+                fileService.AddInputFilePath(droppedFilenames[0]);
                 navigationService.GoToXMLViewer();
             }
         }

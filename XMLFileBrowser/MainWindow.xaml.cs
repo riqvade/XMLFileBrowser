@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Data;
+using System.Globalization;
+using System.Windows;
+using XMLFileBrowser.Helpers;
 using XMLFileBrowser.StartScreen;
 
 namespace XMLFileBrowser

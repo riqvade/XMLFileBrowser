@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows;
 using XMLFileBrowser.Components;
 
 namespace XMLFileBrowser.XMLViewer
@@ -40,6 +41,11 @@ namespace XMLFileBrowser.XMLViewer
         }
 
         /// <summary>
+        /// Имя файла
+        /// </summary>
+        public Visibility visib { get; set; } = Visibility.Collapsed;
+
+        /// <summary>
         /// Главы
         /// </summary>
         public ObservableCollection<ChapterModel> Chapters { get; set; } = new ObservableCollection<ChapterModel>();
@@ -50,6 +56,11 @@ namespace XMLFileBrowser.XMLViewer
         public RelayCommand AddFileCommand { get; }
 
         /// <summary>
+        /// Команда для экспорта данных в excel
+        /// </summary>
+        public RelayCommand ExportToExcelCommand { get; }
+
+        /// <summary>
         /// Создает экземпляр класса <see cref="XMLViewerViewModel"/>
         /// </summary>
         public XMLViewerViewModel(FileContentService fileContentService, FileService fileService)
@@ -57,8 +68,9 @@ namespace XMLFileBrowser.XMLViewer
             _fileContentService = fileContentService;
             _fileService = fileService;
             AddFileCommand = new RelayCommand(LoadFile);
-            FileName = _fileService.GetFilePath();
-            _fileContentService.AddChapters(XMLParser.ParceXMLFile(_fileService.GetFilePath()));
+            ExportToExcelCommand = new RelayCommand(SaveFile);
+            FileName = _fileService.GetInputFilePath();
+            _fileContentService.AddChapters(XMLParser.ParceXMLFile(_fileService.GetInputFilePath()));
             AddChaptersInChapterViewModel();
         }
 
@@ -71,8 +83,6 @@ namespace XMLFileBrowser.XMLViewer
             {
                 Chapters.Add(item);
             }
-
-            _fileContentService.ClearChapters();
         }
 
         /// <summary>
@@ -80,14 +90,31 @@ namespace XMLFileBrowser.XMLViewer
         /// </summary>
         private void LoadFile()
         {
-            string filePath = XMLLoader.GetXmlFilePath();
-            if (!string.IsNullOrEmpty(filePath))
+            
+            if (_fileService.SelectInputFile() == true)
             {
                 Chapters.Clear();
-                FileName = filePath;
-                _fileContentService.AddChapters(XMLParser.ParceXMLFile(filePath));
+                _fileContentService.ClearChapters();
+                FileName = _fileService.GetInputFilePath();
+                _fileContentService.AddChapters(XMLParser.ParceXMLFile(_fileService.GetInputFilePath()));
                 AddChaptersInChapterViewModel();
             }
+        }
+
+        private void SaveFile()
+        {
+            if(_fileService.SelectExportFolder() == true)
+            {
+                ExportManager.ExportDataToExcel(_fileService.GetExportFilePath());
+            }
+        }
+
+        /// <summary>
+        /// Экспортирует загруженные данные в excel файл
+        /// </summary>
+        private void ExportToExcel()
+        {
+            ExportManager.ExportDataToExcel(@"C:\Users\riqvade\Desktop\excelFile.xlsx");
         }
     }
 }
