@@ -17,15 +17,17 @@ namespace XMLFileBrowser.Components
         /// <summary>
         /// Добавляет главы
         /// </summary>
-        public void AddChapters(ObservableCollection<ChapterModel> chapters)
+        public bool AddChapters(ObservableCollection<ChapterModel> chapters)
         {
             if (chapters != null)
             {
                 _chapters = chapters;
+
+                return true;
             }
             else
             {
-                throw new ArgumentNullException(nameof(chapters));
+                return false;
             }
         }
 

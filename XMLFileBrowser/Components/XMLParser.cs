@@ -1,5 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
+using System.Windows;
 using System.Xml;
 using XMLFileBrowser.Helpers;
 using XMLFileBrowser.XMLViewer;
@@ -17,8 +20,21 @@ namespace XMLFileBrowser.Components
         public static ObservableCollection<ChapterModel> ParceXMLFile(string filePath)
         {
             XmlDocument xDoc = new XmlDocument();
+            string filename = Path.GetFileName(filePath);
             ObservableCollection<ChapterModel> chapterModels = new ObservableCollection<ChapterModel>();
-            xDoc.Load(filePath);
+
+            try
+            {
+                xDoc.Load(filePath);
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show($"Не удалось загрузить файл: {filename}, возможно файл поврежден.");
+                Debug.WriteLine(e.Message);
+
+                return null;
+            }
+
             XmlElement xRoot = xDoc.DocumentElement;
 
             var chapters = xRoot?.SelectSingleNode("Chapters");

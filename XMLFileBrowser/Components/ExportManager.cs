@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using XMLFileBrowser.XMLViewer;
@@ -84,7 +85,20 @@ namespace XMLFileBrowser.Components
             worksheet.Range(firstCellUsed, lastCellUsed).Style.Border.InsideBorder = XLBorderStyleValues.Thin;
             worksheet.Range(firstCellUsed, lastCellUsed).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
 
-            workbook.SaveAs(filePath);
+            string filename = Path.GetFileName(filePath);
+
+            try
+            {
+                workbook.SaveAs(filePath);
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show($"Не удалось сохранить файл: {filename}");
+                Debug.WriteLine(e.Message);
+
+                return;
+            }
+
             MessageBox.Show("Файл: " + Path.GetFileName(filePath) + " создан");
         }
 

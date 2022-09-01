@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
@@ -65,8 +66,10 @@ namespace XMLFileBrowser.XMLViewer
             AddFileCommand = new RelayCommand(LoadFile);
             ExportToExcelCommand = new RelayCommand(SaveFile);
             FileName = _fileService.GetInputFilePath();
-            _fileContentService.AddChapters(XMLParser.ParceXMLFile(_fileService.GetInputFilePath()));
-            AddChaptersInChapterViewModel();
+            if (_fileContentService.AddChapters(XMLParser.ParceXMLFile(_fileService.GetInputFilePath())))
+            {
+                AddChaptersInChapterViewModel();
+            }
         }
 
         /// <summary>
@@ -90,8 +93,11 @@ namespace XMLFileBrowser.XMLViewer
                 Chapters.Clear();
                 _fileContentService.ClearChapters();
                 FileName = _fileService.GetInputFilePath();
-                _fileContentService.AddChapters(XMLParser.ParceXMLFile(_fileService.GetInputFilePath()));
-                AddChaptersInChapterViewModel();
+
+                if(_fileContentService.AddChapters(XMLParser.ParceXMLFile(_fileService.GetInputFilePath())))
+                {
+                    AddChaptersInChapterViewModel();
+                }
             }
         }
 

@@ -61,13 +61,9 @@ namespace XMLFileBrowser.Components
             openFileDialog.Filter = "Excel Files|*.XML";
             openFileDialog.RestoreDirectory = true;
 
-            string filePath = string.Empty;
-
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                filePath = openFileDialog.FileName;
-
-                InputFilePath = filePath;
+                InputFilePath = openFileDialog.FileName;
 
                 return true;
             }
