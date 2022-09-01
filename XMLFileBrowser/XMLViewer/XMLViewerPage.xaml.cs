@@ -32,9 +32,7 @@ namespace XMLFileBrowser.XMLViewer
                 if (vis is DataGridRow)
                 {
                     var row = (DataGridRow)vis;
-
                     ChapterModel chapterModel = row.Item as ChapterModel;
-
                     if (chapterModel != null)
                     {
                         if (chapterModel.Positions.Count == 0)
@@ -45,14 +43,13 @@ namespace XMLFileBrowser.XMLViewer
 
                     Position position = row.Item as Position;
 
-                    if(position != null)
+                    if (position != null)
                     {
                         if (position.Resources.Count == 0)
                         {
                             break;
                         }
                     }
-
                     row.DetailsVisibility = row.DetailsVisibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
 
                     break;
@@ -65,6 +62,7 @@ namespace XMLFileBrowser.XMLViewer
                 {
                     Button button = (Button)vis;
                     button.Content = button.Content.Equals(PLUS) ? MINUS : PLUS;
+
                     break;
                 }
             }

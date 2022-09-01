@@ -15,7 +15,7 @@
             Background="{StaticResource DradDropArea}"
             DragOver="DragDropArea_DragOver"
             Drop="DragDropArea_Drop">
-
+            
         <TextBlock
             HorizontalAlignment="Center"
             VerticalAlignment="Center"

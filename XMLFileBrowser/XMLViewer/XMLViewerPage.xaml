@@ -38,8 +38,8 @@
             <TextBlock 
                 Grid.Column="1"
                 x:Name="FileName" 
-                Margin="10" 
-                d:Text="file №1" 
+                Margin="10"
+                d:Text="file №1"
                 Text="{Binding FileName}"
                 VerticalAlignment="Center"/>
 
@@ -56,10 +56,10 @@
             Grid.Row="1" 
             ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid 
-                ItemsSource="{Binding Path=Chapters}" 
+                ItemsSource="{Binding Chapters}" 
                 AutoGenerateColumns="False" 
                 RowDetailsVisibilityMode="Collapsed">
-                
+
                 <DataGrid.Columns>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
@@ -74,19 +74,20 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Binding="{Binding Caption}" />
+
+                    <DataGridTextColumn Binding="{Binding ChapterModel.Caption}" />
                 </DataGrid.Columns>
 
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
                         <DataGrid
                             Margin="20,0,0,0"
-                            ItemsSource="{Binding Positions}"
+                            ItemsSource="{Binding ChapterModel.Positions}"
                             AutoGenerateColumns="False"
                             RowDetailsVisibilityMode="Collapsed">
-                            
+
                             <DataGrid.Columns>
-                                
+
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -118,7 +119,7 @@
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                
+
                                 <DataGridTextColumn Binding="{Binding Units}" Width="150">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">

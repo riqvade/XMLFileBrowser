@@ -15,7 +15,7 @@ namespace XMLFileBrowser.XMLViewer
         /// <summary>
         /// Имя файла
         /// </summary>
-        public string _fileName;
+        private string _fileName;
 
         /// <summary>
         /// Сервис для работы с содержимым файла
@@ -33,7 +33,7 @@ namespace XMLFileBrowser.XMLViewer
         public string FileName
         {
             get => _fileName;
-            set 
+            set
             {
                 value = Path.GetFileName(value);
                 Set(ref _fileName, value);
@@ -41,14 +41,9 @@ namespace XMLFileBrowser.XMLViewer
         }
 
         /// <summary>
-        /// Имя файла
-        /// </summary>
-        public Visibility visib { get; set; } = Visibility.Collapsed;
-
-        /// <summary>
         /// Главы
         /// </summary>
-        public ObservableCollection<ChapterModel> Chapters { get; set; } = new ObservableCollection<ChapterModel>();
+        public ObservableCollection<ChapterViewModel> Chapters { get; set; } = new ObservableCollection<ChapterViewModel>();
 
         /// <summary>
         /// Команда для загрузки файла
@@ -81,7 +76,7 @@ namespace XMLFileBrowser.XMLViewer
         {
             foreach (ChapterModel item in _fileContentService.GetChapters())
             {
-                Chapters.Add(item);
+                Chapters.Add(new ChapterViewModel(item));
             }
         }
 
@@ -90,7 +85,6 @@ namespace XMLFileBrowser.XMLViewer
         /// </summary>
         private void LoadFile()
         {
-            
             if (_fileService.SelectInputFile() == true)
             {
                 Chapters.Clear();
@@ -103,18 +97,10 @@ namespace XMLFileBrowser.XMLViewer
 
         private void SaveFile()
         {
-            if(_fileService.SelectExportFolder() == true)
+            if (_fileService.SelectExportFolder() == true)
             {
                 ExportManager.ExportDataToExcel(_fileService.GetExportFilePath());
             }
-        }
-
-        /// <summary>
-        /// Экспортирует загруженные данные в excel файл
-        /// </summary>
-        private void ExportToExcel()
-        {
-            ExportManager.ExportDataToExcel(@"C:\Users\riqvade\Desktop\excelFile.xlsx");
         }
     }
 }
