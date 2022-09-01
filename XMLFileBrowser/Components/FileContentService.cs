@@ -1,4 +1,4 @@
-﻿using System;
+﻿using NLog;
 using System.Collections.ObjectModel;
 using XMLFileBrowser.XMLViewer;
 
@@ -9,6 +9,11 @@ namespace XMLFileBrowser.Components
     /// </summary>
     public class FileContentService
     {
+        /// <summary>
+        /// Логгер
+        /// </summary>
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Главы
         /// </summary>
@@ -22,6 +27,7 @@ namespace XMLFileBrowser.Components
             if (chapters != null)
             {
                 _chapters = chapters;
+                _logger.Trace("Добавлены главы");
 
                 return true;
             }

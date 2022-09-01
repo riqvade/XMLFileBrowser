@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
@@ -15,22 +16,29 @@ namespace XMLFileBrowser.Components
     public static class XMLParser
     {
         /// <summary>
+        /// Логгер
+        /// </summary>
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
+        /// <summary>
         /// Возвращает распарсеное содержимое XML файла
         /// </summary>
         public static ObservableCollection<ChapterModel> ParceXMLFile(string filePath)
         {
             XmlDocument xDoc = new XmlDocument();
-            string filename = Path.GetFileName(filePath);
+            string fileName = Path.GetFileName(filePath);
             ObservableCollection<ChapterModel> chapterModels = new ObservableCollection<ChapterModel>();
 
             try
             {
                 xDoc.Load(filePath);
+                _logger.Trace($"Загружен файл {fileName}");
             }
             catch (IOException e)
             {
-                MessageBox.Show($"Не удалось загрузить файл: {filename}, возможно файл поврежден.");
-                Debug.WriteLine(e.Message);
+                MessageBox.Show($"Не удалось загрузить файл: {fileName}, возможно файл поврежден.");
+                _logger.Warn($"Не удалось загрузить файл: {fileName}, возможно файл поврежден.");
+                _logger.Warn(e.Message);
 
                 return null;
             }
@@ -90,6 +98,8 @@ namespace XMLFileBrowser.Components
                     chapterModels.Add(chapterModel);
                 }
             }
+            _logger.Trace($"Файл {fileName} распарсен");
+
             return chapterModels;
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using NLog;
+using System.IO;
 using System.Windows.Forms;
 
 namespace XMLFileBrowser.Components
@@ -8,6 +9,11 @@ namespace XMLFileBrowser.Components
     /// </summary>
     public class FileService
     {
+        /// <summary>
+        /// Логгер
+        /// </summary>
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Путь к входному файлу
         /// </summary>
@@ -64,6 +70,7 @@ namespace XMLFileBrowser.Components
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 InputFilePath = openFileDialog.FileName;
+                _logger.Trace($"Добавлен файл: {openFileDialog.FileName}");
 
                 return true;
             }

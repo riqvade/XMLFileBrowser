@@ -88,7 +88,7 @@ namespace XMLFileBrowser.XMLViewer
         /// </summary>
         private void LoadFile()
         {
-            if (_fileService.SelectInputFile() == true)
+            if (_fileService.SelectInputFile())
             {
                 Chapters.Clear();
                 _fileContentService.ClearChapters();
@@ -103,7 +103,7 @@ namespace XMLFileBrowser.XMLViewer
 
         private void SaveFile()
         {
-            if (_fileService.SelectExportFolder() == true)
+            if (_fileService.SelectExportFolder())
             {
                 ExportManager.ExportDataToExcel(_fileService.GetExportFilePath());
             }

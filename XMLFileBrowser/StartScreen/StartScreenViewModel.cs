@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using NLog;
+using System.IO;
 using System.Windows.Input;
 using XMLFileBrowser.Components;
 using XMLFileBrowser.Infrastructure.Services;
@@ -11,6 +13,11 @@ namespace XMLFileBrowser.StartScreen
     /// </summary>
     class StartScreenViewModel : ViewModelBase
     {
+        /// <summary>
+        /// Логгер
+        /// </summary>
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Сервис навигации
         /// </summary>
@@ -41,7 +48,7 @@ namespace XMLFileBrowser.StartScreen
         /// </summary>
         private void LoadImagesAndGoToXMLViewer()
         {
-            if (_fileService.SelectInputFile() == true)
+            if (_fileService.SelectInputFile())
             {
                 _navigationService.GoToXMLViewer();
             }
