@@ -66,6 +66,7 @@ namespace XMLFileBrowser.XMLViewer
             AddFileCommand = new RelayCommand(LoadFile);
             ExportToExcelCommand = new RelayCommand(SaveFile);
             FileName = _fileService.GetInputFilePath();
+
             if (_fileContentService.AddChapters(XMLParser.ParceXMLFile(_fileService.GetInputFilePath())))
             {
                 AddChaptersInChapterViewModel();
