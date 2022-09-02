@@ -1,4 +1,4 @@
-﻿using System;
+﻿using NLog;
 using System.Collections.ObjectModel;
 using XMLFileBrowser.XMLViewer;
 
@@ -10,6 +10,11 @@ namespace XMLFileBrowser.Components
     public class FileContentService
     {
         /// <summary>
+        /// Логгер
+        /// </summary>
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
+        /// <summary>
         /// Главы
         /// </summary>
         private ObservableCollection<ChapterModel> _chapters { get; set; } = new ObservableCollection<ChapterModel>();
@@ -17,15 +22,18 @@ namespace XMLFileBrowser.Components
         /// <summary>
         /// Добавляет главы
         /// </summary>
-        public void AddChapters(ObservableCollection<ChapterModel> chapters)
+        public bool AddChapters(ObservableCollection<ChapterModel> chapters)
         {
             if (chapters != null)
             {
                 _chapters = chapters;
+                _logger.Trace("Добавлены главы");
+
+                return true;
             }
             else
             {
-                throw new ArgumentNullException(nameof(chapters));
+                return false;
             }
         }
 

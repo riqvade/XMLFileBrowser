@@ -1,5 +1,6 @@
 ﻿using ClosedXML.Excel;
 using Microsoft.Extensions.DependencyInjection;
+using NLog;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -14,6 +15,11 @@ namespace XMLFileBrowser.Components
     public static class ExportManager
     {
         /// <summary>
+        /// Логгер
+        /// </summary>
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
+        /// <summary>
         /// Экспортирует данные в excel файл
         /// </summary>
         public static void ExportDataToExcel(string filePath)
@@ -27,13 +33,21 @@ namespace XMLFileBrowser.Components
             IXLWorksheet worksheet = workbook.Worksheets.Add("Sheet1");
             ObservableCollection<ChapterModel> chapterModels = fileContentService.GetChapters();
 
+            if (chapterModels == null || chapterModels.Count == 0)
+            {
+                MessageBox.Show("Отсутствуют данные для формирования excel файла");
+                _logger.Trace("Отсутствуют данные для формирования excel файла");
+
+                return;
+            }
+
             FormatCells(worksheet, currentColumn);
 
             foreach (ChapterModel chapter in chapterModels)
             {
                 if (chapter != null)
                 {
-                    worksheet.Range(mergeRow).Row(currentRow).Merge(); ///// посмотреть 
+                    worksheet.Range(mergeRow).Row(currentRow).Merge();
                     worksheet.Cell(currentRow, currentColumn).Value = chapter.Caption;
                     worksheet.Row(currentRow).Style.Font.Bold = true;
                     worksheet.Cell(currentRow, currentColumn).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
@@ -84,7 +98,22 @@ namespace XMLFileBrowser.Components
             worksheet.Range(firstCellUsed, lastCellUsed).Style.Border.InsideBorder = XLBorderStyleValues.Thin;
             worksheet.Range(firstCellUsed, lastCellUsed).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
 
-            workbook.SaveAs(filePath);
+            string filename = Path.GetFileName(filePath);
+
+            try
+            {
+                workbook.SaveAs(filePath);
+                _logger.Trace($"Создан файл: {filename}");
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show($"Не удалось создать файл: {filename}");
+                _logger.Trace($"Не удалось создать файл: {filename}");
+                _logger.Trace(e.Message);
+
+                return;
+            }
+
             MessageBox.Show("Файл: " + Path.GetFileName(filePath) + " создан");
         }
 
